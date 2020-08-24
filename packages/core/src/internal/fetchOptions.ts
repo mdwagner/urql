@@ -83,13 +83,23 @@ export const makeFetchOptions = (
       ? operation.context.fetchOptions()
       : operation.context.fetchOptions || {};
 
+  let headers;
+  if ('Headers' in globalThis) {
+    headers = new Headers(extraOptions.headers);
+    if (!headers.has('content-type')) {
+      headers.set('content-type', 'application/json');
+    }
+  } else {
+    headers = {
+      'content-type': 'application/json',
+      ...extraOptions.headers,
+    };
+  }
+
   return {
     ...extraOptions,
     body: !useGETMethod && body ? JSON.stringify(body) : undefined,
     method: useGETMethod ? 'GET' : 'POST',
-    headers: {
-      'content-type': 'application/json',
-      ...extraOptions.headers,
-    },
+    headers,
   };
 };

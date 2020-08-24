@@ -530,7 +530,7 @@ Object {
 }
 `;
 
-exports[`on success uses a file when given 2`] = `Object {}`;
+exports[`on success uses a file when given 2`] = `Headers {}`;
 
 exports[`on success uses a file when given 3`] = `FormData {}`;
 
@@ -659,6 +659,6 @@ Object {
 }
 `;
 
-exports[`on success uses multiple files when given 2`] = `Object {}`;
+exports[`on success uses multiple files when given 2`] = `Headers {}`;
 
 exports[`on success uses multiple files when given 3`] = `FormData {}`;
