@@ -43,7 +43,7 @@ export interface OperationContext {
   [key: string]: any;
   additionalTypenames?: string[];
   fetch?: typeof fetch;
-  fetchOptions?: RequestInit | (() => RequestInit);
+  fetchOptions?: CustomRequestInit | (() => CustomRequestInit);
   requestPolicy: RequestPolicy;
   url: string;
   pollInterval?: number;
@@ -130,3 +130,9 @@ export type DebugEvent<
   timestamp: number;
   source: string;
 };
+
+type RequestInitWithoutHeader = Omit<RequestInit, 'headers'>;
+type CustomHeadersInit = Exclude<HeadersInit, Headers>;
+export interface CustomRequestInit extends RequestInitWithoutHeader {
+  headers?: CustomHeadersInit;
+}

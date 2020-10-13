@@ -34,6 +34,7 @@ import {
   RequestPolicy,
   PromisifiedSource,
   DebugEvent,
+  CustomRequestInit,
 } from './types';
 
 import {
@@ -51,7 +52,7 @@ export interface ClientOptions {
   /** Target endpoint URL such as `https://my-target:8080/graphql`. */
   url: string;
   /** Any additional options to pass to fetch. */
-  fetchOptions?: RequestInit | (() => RequestInit);
+  fetchOptions?: CustomRequestInit | (() => CustomRequestInit);
   /** An alternative fetch implementation. */
   fetch?: typeof fetch;
   /** An ordered array of Exchanges. */
@@ -83,7 +84,7 @@ export class Client {
   // These are variables derived from ClientOptions
   url: string;
   fetch?: typeof fetch;
-  fetchOptions?: RequestInit | (() => RequestInit);
+  fetchOptions?: CustomRequestInit | (() => CustomRequestInit);
   suspense: boolean;
   preferGetMethod: boolean;
   requestPolicy: RequestPolicy;

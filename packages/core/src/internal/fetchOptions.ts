@@ -1,7 +1,7 @@
 import { Kind, print, DocumentNode } from 'graphql';
 
 import { stringifyVariables } from '../utils';
-import { Operation } from '../types';
+import { Operation, CustomRequestInit } from '../types';
 
 export interface FetchBody {
   query?: string;
@@ -81,7 +81,7 @@ export const makeFetchOptions = (
   const extraOptions =
     typeof operation.context.fetchOptions === 'function'
       ? operation.context.fetchOptions()
-      : operation.context.fetchOptions || {};
+      : operation.context.fetchOptions || ({} as CustomRequestInit);
 
   return {
     ...extraOptions,
